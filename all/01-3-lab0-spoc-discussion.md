@@ -7,13 +7,14 @@
 能否读懂ucore中的AT&T格式的X86-32汇编语言？请列出你不理解的汇编语言。
 - [x]  
 
->  
+>  查阅资料可懂
+
 >  http://www.imada.sdu.dk/Courses/DM18/Litteratur/IntelnATT.htm
 
 虽然学过计算机原理和x86汇编（根据THU-CS的课程设置），但对ucore中涉及的哪些硬件设计或功能细节不够了解？
 - [x]  
 
->   
+>   目前还未深入了解
 
 
 哪些困难（请分优先级）会阻碍你自主完成lab实验？
@@ -25,7 +26,9 @@
 如何把一个在gdb中或执行过程中出现的物理/线性地址与你写的代码源码位置对应起来？
 - [x]  
 
->   对应行号即可
+>   GDB 可以显示源代码位置与指令地址之间的映射
+>   如disassemble命令 可以查看源程序的当前执行时的机器码
+>   如inspect命令，来查看当前程序的运行数据，或print命令查看地址所对应的数据
 
 了解函数调用栈对lab实验有何帮助？
 - [x]  
@@ -35,7 +38,7 @@
 你希望从lab中学到什么知识？
 - [x]  
 
->   qemu调试经验，和操作系统运行原理
+>   操作系统运行原理，和系统架构方法
 
 ---
 
@@ -105,29 +108,45 @@ SETGATE(intr, 0,1,2,3);
 请分析 [list.h](https://github.com/chyyuu/ucore_lab/blob/master/labcodes/lab2/libs/list.h)内容中大致的含义，并能include这个文件，利用其结构和功能编写一个数据结构链表操作的小C程序
 - [x]  
 
-> #include <list.h>
-  #include <stdio.h>
+> #include "list.h"
+#include "defs.h"
+#include <stdio.h>
 
-  typedef struct {
-     list_entry_t free_list;
-     unsigned int nr_free;
-   }free_area_t;
+struct page {
+    int test;
+    list_entry_t page_link;
+};
 
-   struct page {
+#define le2page(le, member)  to_struct((le), struct page, member)
 
-     int test;
-     list_entry_t page_link;
-  };
+#define to_struct(ptr, type, member)                               \
+((type *)((char *)(ptr) - offsetof(type, member)))
 
-   int main(){
-      
-      free_area_t free_area;
-      list_entry_t* le = &free_area.free_list;
-      while ( (le = list_next(le)) != free_area.free_list ) {
-          printf ( "%s", "not empty" );
-       }
-       return 0;
-   }
+#define offsetof(type, member)                                      \
+        ((size_t)(&((type *)0)->member))
+
+
+typedef struct {
+    list_entry_t free_list;
+    unsigned int nr_free;
+}free_area_t;
+
+int main(){
+             
+    free_area_t free_area;
+    struct page pg;
+    free_area.free_list.next = &pg.page_link;
+        
+    pg.test = 1;
+    pg.page_link.next = &free_area.free_list;
+    list_entry_t* le = &free_area.free_list;
+    while ( (le = list_next(le)) != &free_area.free_list ) {
+        struct page* p = le2page(le, page_link);
+        printf ( "%d\n", p->test );
+    }
+    return 0;
+}
+
 ---
 
 ## 开放思考题
