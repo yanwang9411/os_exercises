@@ -93,6 +93,13 @@
 
  1. 通过调试[lab1_ex1](https://github.com/chyyuu/ucore_lab/blob/master/related_info/lab1/lab1-ex1.md)了解Linux应用的系统调用执行过程。(2wl1)
  
+--x
+
+> 用户程序------>C库（即API）INT 0x80 ----->系统跳转到一个预设的内核空间地址，指向系统调用处理程序，即system_call函数------->系统调用服务例程-------->内核程序
+
+
+---
+ 
 ## 3.5 ucore系统调用分析
  1. ucore的系统调用中参数传递代码分析。
  1. ucore的系统调用中返回结果的传递代码分析。
