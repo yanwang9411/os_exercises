@@ -85,7 +85,10 @@
  --x
 
 > 输出“hello world”
-> 
+>  设置系统调用编号
+>  设置系统调用参数
+>   产生系统调用软中断命令
+>  函数调用返回
 
 
  1. 通过调试[lab1_ex1](https://github.com/chyyuu/ucore_lab/blob/master/related_info/lab1/lab1-ex1.md)了解Linux应用的系统调用执行过程。(2wl1)
