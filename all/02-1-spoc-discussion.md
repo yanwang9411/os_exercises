@@ -95,16 +95,22 @@
  --x
 
 >  objdump可以查看目标文件或者可执行文件的各个段信息
+>
 >  nm用来列出目标文件的符号清单， 例如 sys_fork, sys_close 等符号
+>
 >  file 即对文件操作
 
 > 
 >  
 >  
 >  输出“hello world”
+>
 >  设置系统调用编号  movl ($sys_write, %eax)
+>
 >  设置系统调用参数  
+>
 >  产生系统调用软中断命令 INT 0x80 
+>
 >  函数调用返回 ret
 
 
