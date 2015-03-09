@@ -60,7 +60,24 @@
 
 ## 3.3 中断、异常和系统调用比较
  1. 举例说明Linux中有哪些中断，哪些异常？
+ --x
+
+> IO中断，时钟中断，处理器之间中断
+> 处理器产生的（Fault，Trap，Abort）异常,如缺页异常；  programmed exceptions（软中断）：由程序员通过INT或INT3指令触发；
+
+---
  1. Linux的系统调用有哪些？大致的功能分类有哪些？  (2wl1)
+ --x
+
+> 一、进程控制: fork clone
+> 二、文件系统控制: open create
+> 三、系统控制: ioctl iopl 
+> 四、内存管理: brk sbrk
+> 五、网络管理: getdomainname
+> 六、socket控制: socketcall
+> 七、用户管理: getuid
+> 八、进程间通信: ipc
+ 
  1. 以ucore lab8为例，uCore的系统调用有哪些？大致的功能分类有哪些？(2wl1)
  
 ## 3.4 linux系统调用分析
