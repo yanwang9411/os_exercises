@@ -86,9 +86,9 @@ lab1中printfmt函数用到了可变参，请参考写一个小的linux应用程
 --x
 
 >
-> \#include <stdio.h>;  
-\#include <string.h>;  
-\#include <stdarg.h>;  
+> \#include \<stdio.h\>;  
+\#include \<string.h\>;  
+\#include \<stdarg.h\>;  
 
 
 int demo(char *msg, ... )  
@@ -121,8 +121,14 @@ int  main( void )
 如果让你来一个阶段一个阶段地从零开始完整实现lab1（不是现在的填空考方式），你的实现步骤是什么？（比如先实现一个可显示字符串的bootloader（描述一下要实现的关键步骤和需要注意的事项），再实现一个可加载ELF格式文件的bootloader（再描述一下进一步要实现的关键步骤和需要注意的事项）...） (spoc)
 - [x]  
 
-> 
->   
+>
+>  打开A20, 初始化GDT全局描述符号表，使能和进入保护模式
+>  通过cga外设来显示一个字符串
+
+>  bootloader读取硬盘
+>  读取elfheader，判断是否是有效elf文件
+> 根据elfheader，proghr程序头，读出并存储相应代码段，数据段
+>  跳转，将控制权交给ucore
 
 
 如何能获取一个系统调用的调用次数信息？如何可以获取所有系统调用的调用次数信息？请简要说明可能的思路。(spoc)
@@ -130,13 +136,14 @@ int  main( void )
 
 >  strace命令跟踪系统调用信息，可获取所有系统调用的次数信息
 >
-> 其中 跟踪指定的系统调用.例如: strace -e trace=open,close,rean,write表示只跟踪这四个系统调用.默认的为set=all
+> 其中跟踪指定的系统调用.例如: strace -e trace=open,close,rean,write表示只跟踪这四个系统调用.默认的为set=all
 
 
 如何裁减lab1, 实现一个可显示字符串"THU LAB1"且依然能够正确加载ucore OS的bootloader？如果不能完成实现，请说明理由。
 - [x]  
 
-> 
+>  在bootmain中，添加语句输出 （或在bootasm文件中向cga端口输出）
+>  其中kernel中的trap，driver等功能可裁剪
 
 ---
 
