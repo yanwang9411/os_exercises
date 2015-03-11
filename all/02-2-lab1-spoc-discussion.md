@@ -121,13 +121,22 @@ int  main( void )
 如果让你来一个阶段一个阶段地从零开始完整实现lab1（不是现在的填空考方式），你的实现步骤是什么？（比如先实现一个可显示字符串的bootloader（描述一下要实现的关键步骤和需要注意的事项），再实现一个可加载ELF格式文件的bootloader（再描述一下进一步要实现的关键步骤和需要注意的事项）...） (spoc)
 - [x]  
 
+>  输出文字：
 >
 >  打开A20, 初始化GDT全局描述符号表，使能和进入保护模式
+>
 >  通过cga外设来显示一个字符串
+>
+>
 
+>  加载elf文件 
+>
 >  bootloader读取硬盘
+>
 >  读取elfheader，判断是否是有效elf文件
+>
 > 根据elfheader，proghr程序头，读出并存储相应代码段，数据段
+>
 >  跳转，将控制权交给ucore
 
 
@@ -137,25 +146,34 @@ int  main( void )
 >  strace命令跟踪系统调用信息，可获取所有系统调用的次数信息
 >
 > 其中跟踪指定的系统调用.例如: strace -e trace=open,close,rean,write表示只跟踪这四个系统调用.默认的为set=all
+> 
+> 或者在系统调用（ucore）的入口点进行调试
 
 
 如何裁减lab1, 实现一个可显示字符串"THU LAB1"且依然能够正确加载ucore OS的bootloader？如果不能完成实现，请说明理由。
 - [x]  
 
->  在bootmain中，添加语句输出 （或在bootasm文件中向cga端口输出）
->  其中kernel中的trap，driver等功能可裁剪
+>  在bootmain中，添加语句输出 （或在bootasm文件中向cga端口输出），如果没有超出512字节
+>
 
 ---
 
 对于ucore_lab中的labcodes/lab1，我们知道如果在qemu中执行，可能会出现各种稀奇古怪的问题，比如reboot，死机，黑屏等等。请通过qemu的分析功能来动态分析并回答lab1是如何执行并最终为什么会出现这种情况？
 - [x]  
 
->   
+> 
+> 
+> 
+>
 
 对于ucore_lab中的labcodes/lab1,如果出现了reboot，死机，黑屏等现象，请思考设计有效的调试方法来分析常在现背后的原因。
 - [x]  
 
-> 
+>  获取操作系统运行的所有信息
+>
+>  
+>
+>
 
 
 ## 开放思考题
