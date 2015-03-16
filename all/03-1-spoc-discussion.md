@@ -54,6 +54,87 @@ NOTICE
 
 请参考ucore lab2代码，采用`struct pmm_manager` 根据你的`学号 mod 4`的结果值，选择四种（0:最优匹配，1:最差匹配，2:最先匹配，3:buddy systemm）分配算法中的一种，在应用程序层面来实现，并给出测试用例。 (spoc)
 
+>
+
+>
+
+class pmm_manager:
+    def __init__(self):
+        self.list_ = [ (0,1024), ]
+    
+    def alloc_size(self, size):
+        for i in self.list_:
+            if i[1] >= size:
+                index = self.list_.index(i)
+
+                if i[1] == size:
+                    self.list_.remove(i)
+                else:
+                    self.list_[index] = (i[0]+size, i[1]-size)
+
+                print self.list_
+                return i[0]
+            
+        return -1
+
+    def free_size(self, addr, size):
+        if  len(self.list_) < 1: 
+            self.list_.append((addr,size))
+            return
+        pre = -1
+        post = len(self.list_)
+
+        after = 1025
+        before = -1
+
+        end = addr+size
+        
+        for ele in self.list_:
+            if  ele[0] >= end :
+                after = ele[0]
+                post = self.list_.index(ele)
+                break
+
+        pre = post - 1
+        if pre >= 0:
+            before = self.list_[pre][0]+self.list_[pre][1]
+
+        if before < addr and after > end:
+            self.list_.insert(post, (addr, size))
+            print self.list_
+            return
+
+        if before == addr and after > end:
+            self.list_[pre] = ( self.list_[pre][0], self.list_[pre][1]+size )
+            print self.list_
+            return
+
+        if before < addr and after == end:
+            self.list_[post] = ( addr, size + self.list_[post][1] )
+            print self.list_
+            return
+
+        if  before == addr and after == end :
+            self.list_[post] = (self.list_[pre][0], self.list_[post][1]+size+self.list_[pre][1])
+            del self.list_[pre]
+            print self.list_
+            return
+
+        return 
+
+
+
+
+pm = pmm_manager()
+print pm.alloc_size(1)
+print pm.alloc_size(1)
+pm.free_size(0,1)
+print pm.alloc_size(2)
+pm.free_size(1,1)
+print pm.alloc_size(2)
+
+
+
 --- 
 
 ## 扩展思考题
