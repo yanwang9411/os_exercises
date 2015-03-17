@@ -26,7 +26,7 @@ NOTICE
 > 64bit物理内存为2^64 byte
 > 每个页的大小为1024 byte，采用多级页表或反置页表
 > 多级页表，即将原页号切分，变成多级页表树，此时若某级页表有不存在表项，则可以节省下一级页表的存储空间
-> 反置页表：即取
+> 反置页表：和物理地址对应，页寄存器对应物理页帧，对逻辑地址进行hash映射，利用快表查找，解决冲突 
 
 ## 小组思考题
 ---
@@ -36,6 +36,7 @@ NOTICE
 - [x]  
 
 > 500=0.9\*150+0.1\*x
+> x = 3650 ns
 
 （2）(spoc) 有一台假想的计算机，页大小（page size）为32 Bytes，支持32KB的虚拟地址空间（virtual address space）,有4KB的物理内存空间（physical memory），采用二级页表，一个页目录项（page directory entry ，PDE）大小为1 Byte,一个页表项（page-table entries
 PTEs）大小为1 Byte，1个页目录表大小为32 Bytes，1个页表大小为32 Bytes。页目录基址寄存器（page directory base register，PDBR）保存了页目录表的物理地址（按页对齐）。
