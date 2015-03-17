@@ -86,6 +86,10 @@ Virtual Address 7268:
       --> Translates to Physical Address 0xca8 --> Value: 16
 ```
 
+> 页目录表存储在 page17，
+> 6c74:   pde index: 1b , (valid 1, pfn 20)  pte index 03 (valid 1, pfn 61)
+
+> 
 
 
 （3）请基于你对原理课二级页表的理解，并参考Lab2建页表的过程，设计一个应用程序（可基于python, ruby, C, C++，LISP等）可模拟实现(2)题中描述的抽象OS，可正确完成二级页表转换。
