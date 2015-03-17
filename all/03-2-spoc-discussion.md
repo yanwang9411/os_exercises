@@ -97,6 +97,9 @@ Virtual Address 7268:
 
 （4）假设你有一台支持[反置页表](http://en.wikipedia.org/wiki/Page_table#Inverted_page_table)的机器，请问你如何设计操作系统支持这种类型计算机？请给出设计方案。
 
+>  搜索逻辑地址对应的页帧，使用hash表查询，在快表中查询相应的页表项，有冲突时查找冲突链，查找失败产生异常
+
+
 
 --- 
 
