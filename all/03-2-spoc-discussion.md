@@ -94,6 +94,119 @@ Virtual Address 7268:
 
 （3）请基于你对原理课二级页表的理解，并参考Lab2建页表的过程，设计一个应用程序（可基于python, ruby, C, C++，LISP等）可模拟实现(2)题中描述的抽象OS，可正确完成二级页表转换。
 
+>  
+ s = "
+ #include <iostream>
+#include <cstdlib>
+#include <memory.h>
+
+using namespace std;
+
+//virtual address : 
+// physical address:
+
+struct v_addr {
+    unsigned offset :5;
+    unsigned frame : 5;
+    unsigned page_dir : 5;
+};
+
+struct p_addr {
+    unsigned offset : 5;
+    unsigned frame : 7;
+};
+
+struct frame_ {
+    unsigned frame : 7;
+};
+
+
+// get the unit of requested address
+
+class page_m {
+    private:
+        char** memory;
+        frame_ pde_base;
+        // pde_base;
+    public:
+        page_m(){
+            memset ( &pde_base, 0, sizeof(pde_base));
+            memory = new char* [128];
+            for ( int i=0; i<128; i++ ) {
+                memory[i] = new char[32];
+                for ( int j = 0; j<32; j++ ){
+                    memory[i][j] = 0x0;
+                }
+            }
+            memory[0][0] = 0x81;
+            memory[1][0] = 0x82;
+            memory[2][0] = 0x01;
+        }
+
+        ~page_m(){
+            for ( int i=0; i<128; i++ ) {
+                delete memory[i];
+            }
+            delete[] memory;
+        }
+
+        bool get_by_pde_index( int pde_index, int& pte_addr) {
+            pte_addr = (int)memory[pde_base.frame][pde_index];
+            if ( !(pte_addr & 0x80) )
+                return false;
+            pte_addr = 0x7f & memory[pde_base.frame][pde_index];
+            return true;
+        }
+
+        bool get_by_pte_index( int pte_addr, int pg_index, int& pg_addr) {
+            pg_addr = (int)memory[pte_addr][pg_index];
+            if ( !(pg_addr & 0x80) )
+                return false;
+            pg_addr = memory[pte_addr][pg_index] & 0x7f;
+            return true;
+        }
+        
+        char get_by_addr ( v_addr addr) {
+            int pde_index = addr.page_dir;
+            int pg_index = addr.frame;
+            int pte_addr = 0;
+            if ( !get_by_pde_index(pde_index, pte_addr) ) {
+                cout << "fail" << endl;
+                return ' ';
+            }
+            
+            int pg_addr = 0;
+            if ( !get_by_pte_index(pte_addr, pg_index, pg_addr) ) {
+                cout << "fail" << endl;
+                return ' ';
+            }
+
+            // print the result
+            
+            cout << "physical address :"  << endl; 
+            cout << " number of frame ---" << pg_addr  << endl;
+            cout << " offset --- " << addr.offset << endl;
+            cout << "content: " << (int)memory[pg_addr][addr.offset] << endl;
+            return memory[pg_addr][addr.offset];
+
+                
+           return memory[0][0]; 
+        }
+};
+
+        
+int main()
+{
+    v_addr addr;
+    addr.page_dir = 0;
+    addr.frame = 0;
+    addr.offset = 0;
+    page_m pm;
+    pm.get_by_addr(addr);
+    return 0;
+}
+
+"
 
 （4）假设你有一台支持[反置页表](http://en.wikipedia.org/wiki/Page_table#Inverted_page_table)的机器，请问你如何设计操作系统支持这种类型计算机？请给出设计方案。
 
