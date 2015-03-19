@@ -86,10 +86,30 @@ Virtual Address 7268:
       --> Translates to Physical Address 0xca8 --> Value: 16
 ```
 
-> 页目录表存储在 page17，
-> 6c74:   pde index: 1b , (valid 1, pfn 20)  pte index 03 (valid 1, pfn 61)
-
+> 页目录表存储在 page11，
 > 
+> 6c74:   pde index: 1b , (valid 1, pfn a0)  pte index 03 (valid 1, pfn e1)
+> 
+> 6b22 : pde index: 1a, (valid 1 , pfn d2) pte index 19 ( valid 1 , pfn c7)
+>
+> 03df pde index : 00, ( valid 1 , pfn da ) pte index 1e ( valid 1, pfn 85) 
+>
+> 69dc : pde index : 1a ( valid 1, pfn d2) pte index : 0e ( valid 0, pfn 7f) fail
+>
+> 317a : pde index : 0c ( valid 1, pfn 98) pte index : 0b (valid 1, pfn b5)
+>
+> 4546: pde index : 11 ( valid 1, pfn a1 ) pte index 0a : ( valid 0, pfn 7f)  fail
+>
+> 2c03: pde index : 0b ( valid 1, pfn c4) pte index 00 : ( valid 1, pfn d7)
+> 
+> 7fd7: pde index : 1f ( valid 1, pfn 92) pte index 1e : ( valid 0, pfn 7f)  fail 
+>
+> 390e: pde index : 0e ( valid 0, pfn 7f) pte index 08 :                      fail
+>
+> 748b: pde index : 1d ( valid 1, pfn 80) pte index  04: ( valid 0, pfn 7f)    fail
+>
+
+
 
 
 （3）请基于你对原理课二级页表的理解，并参考Lab2建页表的过程，设计一个应用程序（可基于python, ruby, C, C++，LISP等）可模拟实现(2)题中描述的抽象OS，可正确完成二级页表转换。
