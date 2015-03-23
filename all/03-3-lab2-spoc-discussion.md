@@ -57,7 +57,12 @@ x86保护模式中权限管理无处不在，下面哪些时候要检查访问�
 
 - [x]  
 
-> 
+
+>   
+>   执行 int $7, unexpected trap in kernal, 具体为 device not available
+>
+>   在trap.c中,没有实现对该trap的处理
+>
 
 （3）对于lab2的输出信息，请说明数字的含义
 ```
