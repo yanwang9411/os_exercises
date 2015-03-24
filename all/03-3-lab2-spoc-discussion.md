@@ -154,17 +154,20 @@ int main(){<br />
 	int data1=0,data2=0;<br />
 	int pde_idx=0,pde_ctx,pte_idx,pte_ctx;<br />
 	int i=0;<br />
-	while(!feof(fp)){<br />
+	while(!feof(fp))
+	{<br />
 		fgets(a,1000,fp);<br />
-			data1=value(a,5);<br />
-			data2=value(a,20);<br />
-			unsigned int data3=(unsigned int)data1;<br />
-			unsigned int data4=(unsigned int)data2;<br />
-			pde_idx=data3/(1024*1024*4);<br />
-			pde_ctx=((data3/(1024*1024*4)-0x300)+1)<<12|3;<br />
-			pte_idx=(data3/4096)%1024;<br />
-			pte_ctx=(data4/4096)<<20|3;<br />
-			printf("va 0x%.8x, pa 0x%.8x, pde_idx 0x%.8x, pde_ctx 0x%.8x, pte_idx 0x%.8x, pte_ctx 0x%.8x\n",data1,data2,pde_idx,pde_ctx,pte_idx,pte_ctx);<br />
+		data1=value(a,5);<br />
+		data2=value(a,20);<br />
+		unsigned int data3=(unsigned int)data1;<br />
+		unsigned int data4=(unsigned int)data2;<br />
+		pde_idx=data3/(1024*1024*4);<br />
+		pde_ctx=((data3/(1024*1024*4)-0x300)+1)<<12|3;<br />
+		pte_idx=(data3/4096)%1024;<br />
+		pte_ctx=(data4/4096)<<20|3;<br />
+		printf("va 0x%.8x, pa 0x%.8x, pde_idx 0x%.8x, pde_ctx 0x%.8x,
+		pte_idx 0x%.8x, pte_ctx 0x%.8x\n",
+		data1,data2,pde_idx,pde_ctx,pte_idx,pte_ctx);<br />
 	};<br />
 	return 0;<br />
 }<br />
