@@ -89,7 +89,7 @@ Virtual Address 1e6f:
 ```
 Virtual Address 7570:
   --> pde index:0x1d  pde contents:(valid 1, pfn 0x33)
-    --> pte index:0xb  pte contents:(valid 0, pfn 0x7f)
+    --> pte inde时x:0xb  pte contents:(valid 0, pfn 0x7f)
       --> Fault (page table entry not valid)
       
 Virtual Address 21e1:
@@ -107,26 +107,24 @@ Virtual Address 106f:
       --> To Disk Sector Address 0x167 --> Value: 2c
 ```
 
-> 页目录表存储在page6c
+> 页目录表存储在page6c:
 > Virtual Address 6653:
---> pde index:0x  pde contents:(valid 1, pfn 0x33)
-    --> pte index:0xb  pte contents:(valid 0, pfn 0x7f)
-      --> Fault (page table entry not valid)
+--> pde index:0x19  pde contents:(valid 0, pfn 0x7f)
+      --> Fault (page directory entry not valid)
 Virtual Address 1c13:
---> pde index:0x1d  pde contents:(valid 1, pfn 0x33)
-    --> pte index:0xb  pte contents:(valid 0, pfn 0x7f)
-      --> Fault (page table entry not valid)
+--> pde index:0x7  pde contents:(valid 1, pfn 0xbd)
+    --> pte index:0x0  pte contents:(valid 1, pfn 0xf6)
+      --> value: 12
 Virtual Address 6890:
---> pde index:0x1d  pde contents:(valid 1, pfn 0x33)
-    --> pte index:0xb  pte contents:(valid 0, pfn 0x7f)
-      --> Fault (page table entry not valid)
+--> pde index:0x1a  pde contents:(valid 0, pfn 0x7f)
+      --> Fault (page directory entry not valid)
 Virtual Address 0af6:
---> pde index:0x1d  pde contents:(valid 1, pfn 0x33)
-    --> pte index:0xb  pte contents:(valid 0, pfn 0x7f)
+--> pde index:0x2  pde contents:(valid 1, pfn 0xa1)
+    --> pte index:0x17  pte contents:(valid 0, pfn 0x7f)
       --> Fault (page table entry not valid)
 Virtual Address 1e6f:
---> pde index:0x1d  pde contents:(valid 1, pfn 0x33)
-    --> pte index:0xb  pte contents:(valid 0, pfn 0x7f)
+--> pde index:0x7  pde contents:(valid 1, pfn 0xbd)
+    --> pte index:0x13  pte contents:(valid 0, pfn 0x16)
       --> Fault (page table entry not valid)
 >
 
