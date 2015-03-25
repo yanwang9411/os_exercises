@@ -50,7 +50,7 @@ sys	0m0.004s
 
 （1）缺页异常可用于虚拟内存管理中。如果在中断服务例程中进行缺页异常的处理时，再次出现缺页异常，这时计算机系统（软件或硬件）会如何处理？请给出你的合理设计和解释。
 
-> > 首先进行缺页异常处理的代码片段应该常驻在内存中，不太可能引起缺页异常。若再次引起缺页异常，应该优先处理当前的缺页异常，否则形成中断异常嵌套后，可能会超过函数栈存储空间
+> > 发生两次嵌套缺页异常，会reboot，操作系统认为无法处理该类错误
 
 （2）如果80386机器的一条机器指令(指字长4个字节)，其功能是把一个32位字的数据装入寄存器，指令本身包含了要装入的字所在的32位地址。这个过程最多会引起几次缺页中断？
 
@@ -108,24 +108,29 @@ Virtual Address 106f:
 ```
 
 > 页目录表存储在page6c:
-> Virtual Address 6653:
---> pde index:0x19  pde contents:(valid 0, pfn 0x7f)
-      --> Fault (page directory entry not valid)
+> >
+Virtual Address 6653:
+--> pde index:0x19 pde contents:(valid 0, pfn 0x7f)
+Fault (page directory entry not valid)
+> >
 Virtual Address 1c13:
---> pde index:0x7  pde contents:(valid 1, pfn 0xbd)
-    --> pte index:0x0  pte contents:(valid 1, pfn 0xf6)
-      --> value: 12
+--> pde index:0x7 pde contents:(valid 1, pfn 0x3d)
+--> pte index:0x0 pte contents:(valid 1, pfn 0x76)
+--> Translates to Physical Address 0xed3 --> Value:12
+> >
 Virtual Address 6890:
---> pde index:0x1a  pde contents:(valid 0, pfn 0x7f)
-      --> Fault (page directory entry not valid)
-Virtual Address 0af6:
---> pde index:0x2  pde contents:(valid 1, pfn 0xa1)
-    --> pte index:0x17  pte contents:(valid 0, pfn 0x7f)
-      --> Fault (page table entry not valid)
+--> pde index:0x1a pde contents:(valid 0, pfn 0x7f)
+Fault (page directory entry not valid)
+> >
+Virtual Address af6:
+--> pde index:0x2 pde contents:(valid 1, pfn 0x21)
+--> pte index:0x17 pte contents:(valid 0, pfn 0x7f)
+--> To Disk Sector Address 0xff6 --> Value: 3
+> >
 Virtual Address 1e6f:
---> pde index:0x7  pde contents:(valid 1, pfn 0xbd)
-    --> pte index:0x13  pte contents:(valid 0, pfn 0x16)
-      --> Fault (page table entry not valid)
+--> pde index:0x7 pde contents:(valid 1, pfn 0x3d)
+--> pte index:0x13 pte contents:(valid 0, pfn 0x16)
+--> To Disk Sector Address 0x2cf --> Value: 1c
 >
 
 ## 扩展思考题
