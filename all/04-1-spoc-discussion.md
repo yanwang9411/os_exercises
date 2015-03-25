@@ -107,6 +107,29 @@ Virtual Address 106f:
       --> To Disk Sector Address 0x167 --> Value: 2c
 ```
 
+> 页目录表存储在page6c
+> Virtual Address 6653:
+--> pde index:0x  pde contents:(valid 1, pfn 0x33)
+    --> pte index:0xb  pte contents:(valid 0, pfn 0x7f)
+      --> Fault (page table entry not valid)
+Virtual Address 1c13:
+--> pde index:0x1d  pde contents:(valid 1, pfn 0x33)
+    --> pte index:0xb  pte contents:(valid 0, pfn 0x7f)
+      --> Fault (page table entry not valid)
+Virtual Address 6890:
+--> pde index:0x1d  pde contents:(valid 1, pfn 0x33)
+    --> pte index:0xb  pte contents:(valid 0, pfn 0x7f)
+      --> Fault (page table entry not valid)
+Virtual Address 0af6:
+--> pde index:0x1d  pde contents:(valid 1, pfn 0x33)
+    --> pte index:0xb  pte contents:(valid 0, pfn 0x7f)
+      --> Fault (page table entry not valid)
+Virtual Address 1e6f:
+--> pde index:0x1d  pde contents:(valid 1, pfn 0x33)
+    --> pte index:0xb  pte contents:(valid 0, pfn 0x7f)
+      --> Fault (page table entry not valid)
+>
+
 ## 扩展思考题
 ---
 (1)请分析原理课的缺页异常的处理流程与lab3中的缺页异常的处理流程（分析粒度到函数级别）的异同之处。
