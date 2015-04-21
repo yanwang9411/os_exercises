@@ -91,23 +91,38 @@ https://github.com/chyyuu/ucore_lab/blob/master/related_info/lab1/lab1-boot-with
 > >sys_exec : create a user program
 
 > >create a new mm for current process
+> >
 > >create a new PDT
+> >
 > >copy TEXT/DATA section, build BSS parts in binary to memory space of process
+> >
 > >get the file header of the bianry program (ELF format)
+> >
 > > get the entry of the program section headers of the bianry program (ELF format)
+> >
 > > This program is valid
+> >
 > > get new vma 
+> >
 > > set current process's mm, sr3, and set CR3 reg 
+> >
 > > setup trapframe for user environment 
+> >
 
 > >switch from ring0 to ring3 ring3! // 进行特权级的转换，设置用户进程寄存器的值。
+> >
 > >set cs
+> >
 > >set ds es ss
+> >
 > >set esp
+> >
 > >set eip
+> >
 > >set eflags
-
+> >
 > >// 执行exit.c中的函数
+> >
 > >I am the parent. Forking the child...
 
 > >
@@ -119,10 +134,15 @@ https://github.com/chyyuu/ucore_lab/blob/master/related_info/lab1/lab1-boot-with
 > >I am the parent, waiting now..   //fork 后，系统调用wait，等待子进程运行结束
 > >
 > >// 进程通过yield切换，交替执行
+> >
 > >yield,switch ring3 to ring0 
+> >
 > >schedule
+> >
 > >switch kstack
+> >
 > >set cr3
+> >
 > >switch context
 
 > >
