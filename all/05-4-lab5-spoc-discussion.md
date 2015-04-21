@@ -148,25 +148,38 @@ https://github.com/chyyuu/ucore_lab/blob/master/related_info/lab1/lab1-boot-with
 > >
 
 > >pid ＝ 4 exit // 4 exit，回收资源
+> >
 > >relaese vma and release page dir entry exit_mmap
+> >
 > >relase page table put_pgdir
+> >
 > >release mm
 
-
+> >
 > >// 父进程 do_wait 结束
+> >
 > >exit pass.
-
+> >
 > > pid ＝ 2 exit // 父进程结束回收
+> >
 > >relaese vma and release page dir entry exit_mmap
+> >
 > >relase page table put_pgdir
+> >
 > >release mm
-
+> >
 > >wake up 1
+> >
 > >schedule
+> >
 > >switch kstack
+> >
 > >set cr3
+> >
 > >switch context
 > >
 > >all user-mode processes have quit.//分析：所有用户进程运行结束
+> >
 > >init check memory pass.
+> >
 > >pid ＝ 1 exit // idle进程 结束
