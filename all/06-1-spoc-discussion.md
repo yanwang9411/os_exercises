@@ -183,6 +183,7 @@ Final statistics:
 (4)扩展练习３：理解并实现EDF, RM实时调度算法和优先级反置方法　可基于python, ruby, C, C++，LISP等）模拟实现，并给出测试，在试验报告写出设计思路和测试结果分析。
 
 > >
-> > code : 
+> > 链接： https://github.com/yanwang9411/os_exercises/blob/master/all/schedule.py
+> > 
 
 
