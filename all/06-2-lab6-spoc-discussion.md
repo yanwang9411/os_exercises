@@ -41,4 +41,7 @@
 
 ### 练习用的[lab6 spoc exercise project source code](https://github.com/chyyuu/ucore_lab/tree/master/labcodes_answer/lab6_result)
 
-
+> >
+> > 在schedule_pick_next处输出调度信息，在trap，wait，exit等调度点输出信息
+> >
+> > 具体输出请见 [info.txt](https://github.com/yanwang9411/os_exercises/blob/master/all/schedule_print_out.txt)
