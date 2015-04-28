@@ -1,0 +1,57 @@
+the first kernel thread schedule
+current process 0
+----- schedule : pick up process id = 1 , stride = 2147483647
+switch to process 1
+schedule when process 1 wait
+----- schedule : pick up process id = 2 , stride = 2147483647
+switch to process 2
+kernel_execve: pid = 2, name = "exit".
+I am the parent. Forking the child...
+I am parent, fork a child pid 3
+I am the parent, waiting now..
+schedule when process 2 wait
+----- schedule : pick up process id = 3 , stride = 2147483647
+switch to process 3
+I am the child.
+schedule at trap
+current process 3
+----- schedule : pick up process id = 3 , stride = -2
+switch to process 3
+schedule at trap
+current process 3
+----- schedule : pick up process id = 3 , stride = 2147483645
+switch to process 3
+schedule at trap
+current process 3
+----- schedule : pick up process id = 3 , stride = -4
+switch to process 3
+schedule at trap
+current process 3
+----- schedule : pick up process id = 3 , stride = 2147483643
+switch to process 3
+schedule at trap
+current process 3
+----- schedule : pick up process id = 3 , stride = -6
+switch to process 3
+schedule at trap
+current process 3
+----- schedule : pick up process id = 3 , stride = 2147483641
+switch to process 3
+schedule at trap
+current process 3
+----- schedule : pick up process id = 3 , stride = -8
+switch to process 3
+schedule when process 3 exit
+----- schedule : pick up process id = 2 , stride = -2
+switch to process 2
+waitpid 3 ok.
+exit pass.
+schedule when process 2 exit
+----- schedule : pick up process id = 1 , stride = -2
+switch to process 1
+init_main process keep on scheduling
+current process 1
+----- schedule : pick up process id = 1 , stride = 2147483645
+switch to process 1
+all user-mode processes have quit.
+init check memory pass.
