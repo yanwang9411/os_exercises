@@ -53,13 +53,33 @@
  
 
 > > -1
+> >
 > > －1
+> >
+
 > > -1
+> >
+
 > > 1
-> > 6, 
+> >
+
+> > 6,  因为bx寄存器设为了3 
+> >
+# see if we're still looping
+sub  $1, %bx
+test $0, %bx
+jgt .top
+> >
+
 > > 2
+> >
+
 > > 2
+> >
+
 > > 2
+> >
+
 > > 1
 
 
@@ -86,3 +106,16 @@ int FetchAndAdd(int *ptr) {
   return old;
 }
 ```
+
+
+--
+> > 
+> > flag.s,peterson.s, 不能实现锁机制； test-and-set.s,ticket.s,test-and-test-and-set.s 可以实现锁机制
+> > 
+> > flag.s 如果在将flag置为1指令执行之前切换，则失败
+> >
+> > 测试方法，修改 锁的汇编代码，将count修改为2000地址，设置参数 －t ＝ 4，6，10等多个值，观察2000地址的最后结果，正确实现锁机制的代码2000地址的值应当等于进程数
+
+> > 
+> >
+
