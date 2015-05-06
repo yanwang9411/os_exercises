@@ -2,12 +2,14 @@
 import threading  
 import random  
 import time  
-  
+
+account = 10000
+
+
 class SemaphoreThread(threading.Thread):  
     """classusing semaphore"""  
      
-    account = 10000
-    
+
     def __init__(self,threadName,semaphore):  
        """initialize thread"""  
          
@@ -18,19 +20,21 @@ class SemaphoreThread(threading.Thread):
 
 
     def store(self):  
-
+       global account
        self.threadSemaphore.acquire()
-       accout += 10
-       time.sleep(self.sleepTime)  
+       account += 10
+       time.sleep(self.sleepTime)
        print "%s store 10 to account, remain %d" % (self.getName(), account)
-       SemaphoreThread.availableTables.append(table)
-    
-    def take(self):  
+       self.threadSemaphore.release()
+
+
+    def take(self):
+       global account
        self.threadSemaphore.acquire()
-       accout -= 10
+       account -= 10
        time.sleep(self.sleepTime)  
        print "%s take 10 from account, remain %d" % (self.getName(), account)
-       SemaphoreThread.availableTables.append(table)
+       self.threadSemaphore.release()
 
 
     def run(self):  
@@ -38,8 +42,7 @@ class SemaphoreThread(threading.Thread):
        for i in range(0, 5):
            self.store()
            self.take()
-       self.threadSemaphore.release()  
-         
+
 threads=[]
 threadSemaphore=threading.Semaphore(1)
 for i in range(1,3):
