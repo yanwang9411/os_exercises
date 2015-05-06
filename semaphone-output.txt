@@ -1,6 +1,23 @@
 使用信号量：
 
-
+thread2 store 10 to account, remain 10010
+thread2 take 10 from account, remain 10000
+thread2 store 10 to account, remain 10010
+thread2 take 10 from account, remain 10000
+thread2 store 10 to account, remain 10010
+thread2 take 10 from account, remain 10000
+thread2 store 10 to account, remain 10010
+thread2 take 10 from account, remain 10000
+thread2 store 10 to account, remain 10010
+thread1 store 10 to account, remain 10020
+thread1 take 10 from account, remain 10010
+thread2 take 10 from account, remain 10000
+thread1 store 10 to account, remain 10010
+thread1 take 10 from account, remain 10000
+thread1 store 10 to account, remain 10010
+thread1 take 10 from account, remain 10000
+thread1 store 10 to account, remain 10010
+thread1 take 10 from account, remain 10000
 
 使用条件变量：
 
