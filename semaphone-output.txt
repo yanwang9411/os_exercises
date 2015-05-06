@@ -1,0 +1,20 @@
+使用信号量：
+
+
+
+使用条件变量：
+
+store $10, remain 10
+take $10, remain 0
+store $10, remain 10
+take $10, remain 0
+store $10, remain 10
+take $10, remain 0
+account is overdrawed, wait...
+store $10, remain 10
+take $10, remain 0
+store $10, remain 10
+store $10, remain 20
+store $10, remain 30
+take $10, remain 20
+take $10, remain 10
