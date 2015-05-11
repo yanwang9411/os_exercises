@@ -68,6 +68,9 @@ int shmctl(int shm_id, int cmd, struct shmid_ds *buf);
 共享内存块独立于进程进行控制：要在程序结束前，进行系统调用删除等操作
 处理互斥同步问题：进程间使用互斥锁和信号量实现均可
 
+> > 进程堆栈和share memory的关系
+> > fork 
+
 
 
 
