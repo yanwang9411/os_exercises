@@ -10,6 +10,10 @@
  2. 请简要描述ucore文件系统支持的文件系统抽象
 
  > 文件、目录、索引节点和安装点
+ > 
+ > 根目录：？
+ > 
+ > syscall 命令：读写，open／close，ctl
 
 ### ucore 文件系统架构
 
@@ -18,6 +22,12 @@
  > 系统调用接口、VFS、SFS和I/O接口
 
  2. 请简要说明进程proc_struct、文件file、inode之间的关系。 
+
+
+>
+> 创建文件，对目录的操作：
+>
+> proc_struct 保存打开 file，比较内存和硬盘中的inode
  
  3. ucore中的进程打开文件表和系统打开文件表对应到具体的哪个数据结构上？
 
@@ -25,7 +35,10 @@
 
  1. SFS在硬盘上的四大部分主要是什么，有何作用？
  
+
  > superblock, root-dir inode, freeman, data block
+> superblock: 统计信息
+> datablock : inode, file dir, file
 
  2. 硬盘上的SFS是如何加载到ucore中并初始化的？
  3. 硬盘上的inode和内存中的inode的关系和区别是什么?
@@ -42,6 +55,10 @@
 
  1. device数据结构的主要内容是什么？与fs的关系是什么？与inode的关系是什么？
  2. 比较ucore中I/O接口、SFS文件系统接口和文件系统的系统调用接口的操作函数有什么异同？
+ 
+
+> > device file sys VS sfs
+> > 将外设作为filesystem
  
 ## 小组思考题
 
